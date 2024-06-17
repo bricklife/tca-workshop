@@ -21,7 +21,7 @@ public struct RepositoryList {
     public init() {}
   }
 
-  public enum Action: BindableAction, Sendable {
+  public enum Action: BindableAction {
     case onAppear
     case queryChangeDebounced
     case searchRepositoriesResponse(Result<[Repository], Error>)
@@ -121,14 +121,14 @@ public struct RepositoryList {
 }
 
 extension RepositoryList {
-  @Reducer(state: .equatable, .sendable, action: .sendable)
+  @Reducer(state: .equatable, .sendable)
   public enum Destination {
     case alert(AlertState<Alert>)
 
     public enum Alert: Equatable, Sendable {}
   }
 
-  @Reducer(state: .equatable, .sendable, action: .sendable)
+  @Reducer(state: .equatable, .sendable)
   public enum Path {
     case repositoryDetail(RepositoryDetail)
   }

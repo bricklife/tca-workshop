@@ -21,7 +21,7 @@ public struct RepositoryDetail {
     }
   }
   
-  public enum Action: BindableAction, Sendable {
+  public enum Action: BindableAction {
     case onAppear
     case favoriteButtonTapped
     case binding(BindingAction<State>)

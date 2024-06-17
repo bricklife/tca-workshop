@@ -14,7 +14,7 @@ public struct App {
     public init() {}
   }
   
-  public enum Action: Sendable {
+  public enum Action {
     case repositoryList(RepositoryList.Action)
     case favoriteRepositoryList(FavoriteRepositoryList.Action)
   }

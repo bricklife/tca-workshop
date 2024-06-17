@@ -18,7 +18,7 @@ public struct FavoriteRepositoryList {
     public init() {}
   }
 
-  public enum Action: Sendable {
+  public enum Action {
     case onAppear
     case onDelete(IndexSet)
     case repositoryRows(IdentifiedActionOf<RepositoryRow>)
@@ -60,7 +60,7 @@ public struct FavoriteRepositoryList {
     .forEach(\.path, action: \.path)
   }
   
-  @Reducer(state: .equatable, .sendable, action: .sendable)
+  @Reducer(state: .equatable, .sendable)
   public enum Path {
     case repositoryDetail(RepositoryDetail)
   }

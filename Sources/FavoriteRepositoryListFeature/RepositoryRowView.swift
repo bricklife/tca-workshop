@@ -16,12 +16,12 @@ public struct RepositoryRow {
     }
   }
 
-  public enum Action: Sendable {
+  public enum Action {
     case rowTapped
     case delegate(Delegate)
     
     @CasePathable
-    public enum Delegate: Sendable {
+    public enum Delegate {
       case rowTapped(Repository)
     }
   }
