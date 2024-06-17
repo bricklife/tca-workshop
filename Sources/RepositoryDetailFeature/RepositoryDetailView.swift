@@ -9,7 +9,7 @@ import WebKit
 @Reducer
 public struct RepositoryDetail {
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     @Shared(.favoriteRepositories) var favoriteRepositories
     let repository: Repository
 
@@ -21,7 +21,7 @@ public struct RepositoryDetail {
     }
   }
   
-  public enum Action: BindableAction {
+  public enum Action: BindableAction, Sendable {
     case onAppear
     case favoriteButtonTapped
     case binding(BindingAction<State>)

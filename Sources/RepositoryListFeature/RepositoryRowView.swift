@@ -6,17 +6,17 @@ import SwiftUI
 @Reducer
 public struct RepositoryRow {
   @ObservableState
-  public struct State: Equatable, Identifiable {
+  public struct State: Equatable, Identifiable, Sendable {
     public var id: Int { repository.id }
     let repository: Repository
   }
 
-  public enum Action {
+  public enum Action: Sendable {
     case rowTapped
     case delegate(Delegate)
 
     @CasePathable
-    public enum Delegate {
+    public enum Delegate: Sendable {
       case rowTapped
     }
   }

@@ -7,14 +7,14 @@ import SwiftUI
 @Reducer
 public struct App {
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     var repositoryList = RepositoryList.State()
     var favoriteRepositoryList = FavoriteRepositoryList.State()
     
     public init() {}
   }
   
-  public enum Action {
+  public enum Action: Sendable {
     case repositoryList(RepositoryList.Action)
     case favoriteRepositoryList(FavoriteRepositoryList.Action)
   }

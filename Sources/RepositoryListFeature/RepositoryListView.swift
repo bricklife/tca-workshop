@@ -11,7 +11,7 @@ import SwiftUINavigationCore
 @Reducer
 public struct RepositoryList {
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     var repositoryRows: IdentifiedArrayOf<RepositoryRow.State> = []
     var isLoading: Bool = false
     var query: String = ""
@@ -21,7 +21,7 @@ public struct RepositoryList {
     public init() {}
   }
 
-  public enum Action: BindableAction {
+  public enum Action: BindableAction, Sendable {
     case onAppear
     case queryChangeDebounced
     case searchRepositoriesResponse(Result<[Repository], Error>)
@@ -121,14 +121,14 @@ public struct RepositoryList {
 }
 
 extension RepositoryList {
-  @Reducer(state: .equatable)
+  @Reducer(state: .equatable, .sendable, action: .sendable)
   public enum Destination {
     case alert(AlertState<Alert>)
 
     public enum Alert: Equatable, Sendable {}
   }
 
-  @Reducer(state: .equatable)
+  @Reducer(state: .equatable, .sendable, action: .sendable)
   public enum Path {
     case repositoryDetail(RepositoryDetail)
   }

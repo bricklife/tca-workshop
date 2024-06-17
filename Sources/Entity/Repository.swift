@@ -1,6 +1,6 @@
 import Foundation
 
-public struct GithubSearchResult: Codable {
+public struct GithubSearchResult: Codable, Sendable {
   public let items: [Repository]
 }
 

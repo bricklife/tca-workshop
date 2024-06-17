@@ -10,7 +10,7 @@ import SwiftUI
 @Reducer
 public struct FavoriteRepositoryList {
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     @Shared(.favoriteRepositories) var favoriteRepositories
     var repositoryRows: IdentifiedArrayOf<RepositoryRow.State> = []
     var path = StackState<Path.State>()
@@ -18,7 +18,7 @@ public struct FavoriteRepositoryList {
     public init() {}
   }
 
-  public enum Action {
+  public enum Action: Sendable {
     case onAppear
     case onDelete(IndexSet)
     case repositoryRows(IdentifiedActionOf<RepositoryRow>)
@@ -60,7 +60,7 @@ public struct FavoriteRepositoryList {
     .forEach(\.path, action: \.path)
   }
   
-  @Reducer(state: .equatable)
+  @Reducer(state: .equatable, .sendable, action: .sendable)
   public enum Path {
     case repositoryDetail(RepositoryDetail)
   }
