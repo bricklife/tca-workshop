@@ -3,6 +3,6 @@ import DependenciesMacros
 import Entity
 
 @DependencyClient
-public struct GitHubAPIClient {
+public struct GitHubAPIClient: Sendable {
   public var searchRepositories: @Sendable (_ query: String) async throws -> [Repository]
 }

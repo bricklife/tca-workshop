@@ -109,6 +109,7 @@ struct SimpleWebView: UIViewRepresentable {
     Coordinator(self)
   }
 
+  @MainActor
   class Coordinator: NSObject, WKNavigationDelegate {
     let parent: SimpleWebView
 
@@ -116,12 +117,16 @@ struct SimpleWebView: UIViewRepresentable {
       self.parent = parent
     }
     
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-      parent.isLoading = true
+    nonisolated func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+      Task { @MainActor in
+        parent.isLoading = true
+      }
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-      parent.isLoading = false
+    nonisolated func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+      Task { @MainActor in
+        parent.isLoading = false
+      }
     }
   }
 }

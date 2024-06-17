@@ -47,7 +47,7 @@ public struct RepositoryList {
       case .onAppear:
         state.isLoading = true
 
-        return .run { send in
+        return .run { [gitHubAPIClient] send in
           await send(
             .searchRepositoriesResponse(
               Result {
@@ -99,7 +99,7 @@ public struct RepositoryList {
 
         state.isLoading = true
 
-        return .run { [query = state.query] send in
+        return .run { [gitHubAPIClient, query = state.query] send in
           await send(
             .searchRepositoriesResponse(
               Result {
@@ -125,7 +125,7 @@ extension RepositoryList {
   public enum Destination {
     case alert(AlertState<Alert>)
 
-    public enum Alert: Equatable {}
+    public enum Alert: Equatable, Sendable {}
   }
 
   @Reducer(state: .equatable)
