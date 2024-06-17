@@ -4,8 +4,8 @@ import XCTest
 
 @testable import RepositoryDetailFeature
 
-@MainActor
 final class RepositoryDetailFeatureTests: XCTestCase {
+  @MainActor
   func testRepositoryIsFavorited() async {
     let repository = Repository.mock(id: 1)
     @Shared(.favoriteRepositories) var favoriteRepositories = [
@@ -30,6 +30,7 @@ final class RepositoryDetailFeatureTests: XCTestCase {
     }
   }
   
+  @MainActor
   func testRepositoryIsNotFavorited() async {
     @Shared(.favoriteRepositories) var favoriteRepositories = []
 

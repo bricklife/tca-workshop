@@ -5,8 +5,8 @@ import XCTest
 
 @testable import RepositoryListFeature
 
-@MainActor
 final class RepositoryListFeatureTests: XCTestCase {
+  @MainActor
   func testOnAppear_SearchSucceeded() async {
     let response: [Repository] = (1...10).map {
       .mock(id: $0)
@@ -33,6 +33,7 @@ final class RepositoryListFeatureTests: XCTestCase {
     }
   }
   
+  @MainActor
   func testOnAppear_SearchFailed() async {
     let store = TestStore(
       initialState: RepositoryList.State()
@@ -53,6 +54,7 @@ final class RepositoryListFeatureTests: XCTestCase {
     }
   }
 
+  @MainActor
   func testQueryChanged() async {
     let response: [Repository] = (1...10).map {
       .mock(id: $0)
@@ -85,6 +87,7 @@ final class RepositoryListFeatureTests: XCTestCase {
     }
   }
 
+  @MainActor
   func testRepositoryRowTapped() async {
     var state = RepositoryList.State()
     state.repositoryRows.append(

@@ -4,8 +4,8 @@ import XCTest
 
 @testable import FavoriteRepositoryListFeature
 
-@MainActor
 final class FavoriteRepositoryListFeatureTests: XCTestCase {
+  @MainActor
   func testOnAppear() async {
     let repositories: [Repository] = (1...10).map { .mock(id: $0) }
     @Shared(.favoriteRepositories) var favoriteRepositories = .init(
@@ -26,6 +26,7 @@ final class FavoriteRepositoryListFeatureTests: XCTestCase {
     }
   }
   
+  @MainActor
   func testRepositoryRowTapped() async {
     @Shared(.favoriteRepositories) var favoriteRepositories = [
       .mock(id: 1)
@@ -50,6 +51,7 @@ final class FavoriteRepositoryListFeatureTests: XCTestCase {
     }
   }
 
+  @MainActor
   func testRepositoryRowDeleted() async {
     @Shared(.favoriteRepositories) var favoriteRepositories = [
       .mock(id: 1)
@@ -65,7 +67,7 @@ final class FavoriteRepositoryListFeatureTests: XCTestCase {
         .init(repository: .mock(id: 1)),
       ]
     }
-    await store.send(.delete([0])) {
+    await store.send(.onDelete([0])) {
       $0.favoriteRepositories = []
       $0.repositoryRows = []
     }
